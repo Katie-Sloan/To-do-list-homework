@@ -1,14 +1,15 @@
 <template>
   <div id="app">
     <form v-on:submit.prevent="saveNewItem">
-      <label for="new-item">ToDo's:</label>
+      <label for="new-item">ToDos:</label>
       <input id="new-item" type="text" v-model="newItem"/>
       <input type="submit" value="Save item"/>
     </form>
 
     <ul>
-      <li v-for="(item, index) in items" :key="index" :class="item.isHighPriority ? 'high-priority':'low-priority'">
-        <span>{{item.name}}</span>
+      <!-- <li v-for="(item, index) in todos" :key="index" :class="item.isHighPriority ? 'high-priority':'low-priority'"> -->
+      <li v-for="(item, index) in todos">
+        <span>{{item}}</span>
       </li>
     </ul>
   </div>
@@ -18,24 +19,22 @@
 export default {
   data(){
     return {
-      items: [
-        {name: "Buy shopping", isHighPriority: true},
-        {name: "Clean bathroom", isHighPriority: false},
-        {name: "Car's MOT", isHighPriority: true}
+      todos: [
+        "Buy shopping", "Clean bathroom", "Car's MOT"
       ],
       newItem: ""
     }
   },
   methods: {
     saveNewItem: function(){
-      this.items.push({
-        name: this.newItem,
-        isHighPriority: false
-      });
+      this.todos.push(this.newItem) 
+        // name: this.newItem,
+        // isHighPriority: false
       this.newItem = "";
     }
-  }  
-}
+  },
+}  
+
 </script>
 
 <style>
