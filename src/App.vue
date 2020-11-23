@@ -1,28 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <form v-on:submit.prevent="saveNewItem"></form>
+      <label for="new-item">Add a new item: </label>
+      <input id="new-item" type="text" v-model="newItem"/>
+      <input type="submit" value="Save new item"/>
+    </form>
+
+    <ul>
+      <li v-for="(item.index) in items" 
+      :key="index"
+      :class="item.isHighPriority ? 'high-priority':'low-priority'"
+        <span>{{item.name}}</span>
+      </li>
+    </ul>
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+li.high-priority {
+  border: 2px solid #f2360c;
+}
+
+li.low-priority {
+  border: 2px solid #1a681e;
 }
 </style>
